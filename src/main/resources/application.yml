@@ -1,0 +1,20 @@
+# AWS S3
+cloud:
+  aws:
+    credentials:
+      access-key: ${ACCESS_KEY}
+      secret-key: ${SECRET_KEY}
+    region:
+      static: us-east-2 # 버킷의 리전
+    s3:
+      bucket: 9oormthon-week2-uploads # 버킷 이름
+    stack:
+      auto: false
+
+spring:
+  servlet:
+    multipart:
+      # 로드할 수 있는 개별 파일의 최대 크기. 기본 1MB
+      max-file-size: 1MB
+      # $multipart/form-data 요청의 최대 허용 크기. 기본 10MB
+      max-request-size: 10MB
