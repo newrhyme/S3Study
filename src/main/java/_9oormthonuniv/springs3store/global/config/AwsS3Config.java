@@ -1,4 +1,4 @@
-package _9oormthonuniv.springs3store.config;
+package _9oormthonuniv.springs3store.global.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

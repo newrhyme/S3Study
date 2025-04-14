@@ -1,8 +1,8 @@
-package _9oormthonuniv.springs3store.controller;
+package _9oormthonuniv.springs3store.domain.post.controller;
 
-import _9oormthonuniv.springs3store.dto.PostRequestDTO;
-import _9oormthonuniv.springs3store.dto.PostResponseDTO;
-import _9oormthonuniv.springs3store.service.PostService;
+import _9oormthonuniv.springs3store.domain.post.dto.PostRequestDTO;
+import _9oormthonuniv.springs3store.domain.post.dto.PostResponseDTO;
+import _9oormthonuniv.springs3store.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

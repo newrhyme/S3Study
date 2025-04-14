@@ -1,4 +1,4 @@
-package _9oormthonuniv.springs3store.controller;
+package _9oormthonuniv.springs3store.global.service;
 
 import _9oormthonuniv.springs3store.service.AwsS3Service;
 import org.springframework.http.ResponseEntity;

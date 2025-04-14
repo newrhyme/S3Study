@@ -1,4 +1,4 @@
-package _9oormthonuniv.springs3store.dto;
+package _9oormthonuniv.springs3store.domain.post.dto;
 
 import lombok.Getter;
 import lombok.Setter;

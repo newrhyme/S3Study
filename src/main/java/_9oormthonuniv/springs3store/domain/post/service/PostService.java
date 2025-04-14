@@ -1,9 +1,9 @@
-package _9oormthonuniv.springs3store.service;
+package _9oormthonuniv.springs3store.domain.post.service;
 
-import _9oormthonuniv.springs3store.dto.PostRequestDTO;
-import _9oormthonuniv.springs3store.dto.PostResponseDTO;
-import _9oormthonuniv.springs3store.entity.PostEntity;
-import _9oormthonuniv.springs3store.repository.PostRepository;
+import _9oormthonuniv.springs3store.domain.post.dto.PostRequestDTO;
+import _9oormthonuniv.springs3store.domain.post.dto.PostResponseDTO;
+import _9oormthonuniv.springs3store.domain.post.entity.PostEntity;
+import _9oormthonuniv.springs3store.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

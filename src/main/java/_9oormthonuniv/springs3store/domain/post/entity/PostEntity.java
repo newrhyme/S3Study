@@ -1,4 +1,4 @@
-package _9oormthonuniv.springs3store.entity;
+package _9oormthonuniv.springs3store.domain.post.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
