@@ -70,12 +70,17 @@ public class PostService {
         PostEntity post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
-        // 이미지도 함께 삭제하고 싶다면 imageUrl 기준으로 S3에서 삭제
-        if (post.getImageUrl() != null && !post.getImageUrl().startsWith("http")) {
-            awsS3Service.deleteFile(post.getImageUrl());
-        }
+        String imageUrl = post.getImageUrl();
 
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            String fileName = extractFileNameFromUrl(imageUrl);
+            awsS3Service.deleteFile(fileName);
+        }
         postRepository.delete(post);
     }
 
+    private String extractFileNameFromUrl(String imageUrl) {
+        // 예: https://bucket.s3.amazonaws.com/abc-uuid.png → abc-uuid.png
+        return imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+    }
 }
