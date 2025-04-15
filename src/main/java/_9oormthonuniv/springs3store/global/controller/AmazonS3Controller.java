@@ -1,6 +1,6 @@
-package _9oormthonuniv.springs3store.global.service;
+package _9oormthonuniv.springs3store.global.controller;
 
-import _9oormthonuniv.springs3store.service.AwsS3Service;
+import _9oormthonuniv.springs3store.global.service.AwsS3Service;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

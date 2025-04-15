@@ -4,8 +4,10 @@ import _9oormthonuniv.springs3store.domain.post.dto.PostRequestDTO;
 import _9oormthonuniv.springs3store.domain.post.dto.PostResponseDTO;
 import _9oormthonuniv.springs3store.domain.post.entity.PostEntity;
 import _9oormthonuniv.springs3store.domain.post.repository.PostRepository;
+import _9oormthonuniv.springs3store.global.service.AwsS3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,13 +17,18 @@ import java.util.stream.Collectors;
 public class PostService {
     private final PostRepository postRepository;
 
-    public Long createPost(PostRequestDTO postRequestDTO) {
+    // AwsS3Service 주입
+    private final AwsS3Service awsS3Service;
+
+    public Long createPost(PostRequestDTO postRequestDTO, MultipartFile image) {
+
+        String imageUrl = awsS3Service.uploadFile(image);
 
         PostEntity postEntity = new PostEntity();
 
         postEntity.setTitle(postRequestDTO.getTitle());
-        postEntity.setTitle(postRequestDTO.getContent());
-        postEntity.setImageUrl(postRequestDTO.getImageUrl());
+        postEntity.setContent(postRequestDTO.getContent());
+        postEntity.setImageUrl(imageUrl);
 
         return postRepository.save(postEntity).getId();
     }

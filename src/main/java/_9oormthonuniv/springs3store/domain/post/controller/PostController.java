@@ -4,8 +4,10 @@ import _9oormthonuniv.springs3store.domain.post.dto.PostRequestDTO;
 import _9oormthonuniv.springs3store.domain.post.dto.PostResponseDTO;
 import _9oormthonuniv.springs3store.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,9 +18,13 @@ public class PostController {
 
     private final PostService postService;
 
-    @PostMapping
-    public ResponseEntity<Long> createPost(@RequestBody PostRequestDTO postRequestDTO) {
-        Long postId = postService.createPost(postRequestDTO);
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Long> createPost(
+            @RequestPart("postRequestDTO") PostRequestDTO postRequestDTO,
+            @RequestPart("image") MultipartFile image
+            )
+    {
+        Long postId = postService.createPost(postRequestDTO, image);
         return ResponseEntity.ok(postId);
     }
 

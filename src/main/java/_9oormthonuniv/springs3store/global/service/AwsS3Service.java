@@ -1,4 +1,4 @@
-package _9oormthonuniv.springs3store.service;
+package _9oormthonuniv.springs3store.global.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
