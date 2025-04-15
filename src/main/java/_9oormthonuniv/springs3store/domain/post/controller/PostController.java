@@ -32,4 +32,20 @@ public class PostController {
     public ResponseEntity<List<PostResponseDTO>> getAllPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Long> updatePost(
+            @PathVariable Long id,
+            @RequestPart PostRequestDTO postRequestDTO,
+            @RequestPart(required = false) MultipartFile image)
+    {
+        Long updateId = postService.updatePost(id, postRequestDTO, image);
+        return ResponseEntity.ok(updateId);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+        return ResponseEntity.noContent().build();
+    }
 }

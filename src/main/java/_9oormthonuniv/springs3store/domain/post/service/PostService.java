@@ -50,4 +50,32 @@ public class PostService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    public Long updatePost(Long id, PostRequestDTO postRequestDTO, MultipartFile image) {
+        PostEntity postEntity = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));
+
+        postEntity.setTitle(postRequestDTO.getTitle());
+        postEntity.setContent(postRequestDTO.getContent());
+
+        if(image != null && !image.isEmpty()) {
+            String imageUrl = awsS3Service.uploadFile(image);
+            postEntity.setImageUrl(imageUrl);
+        }
+
+        return postRepository.save(postEntity).getId();
+    }
+
+    public void deletePost(Long id) {
+        PostEntity post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+
+        // 이미지도 함께 삭제하고 싶다면 imageUrl 기준으로 S3에서 삭제
+        if (post.getImageUrl() != null && !post.getImageUrl().startsWith("http")) {
+            awsS3Service.deleteFile(post.getImageUrl());
+        }
+
+        postRepository.delete(post);
+    }
+
 }
